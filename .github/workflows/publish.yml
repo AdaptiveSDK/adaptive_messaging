@@ -1,0 +1,41 @@
+name: Publish to pub.dev
+
+on:
+  push:
+    tags:
+      - 'v[0-9]+.[0-9]+.[0-9]+'  # Triggers on tags like v1.0.0
+
+jobs:
+  publish:
+    name: Publish
+    runs-on: ubuntu-latest
+    environment: pub-dev   # Optional: use a GitHub environment with required approvals
+
+    permissions:
+      id-token: write    # Required for pub.dev OIDC publishing
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Flutter
+        uses: subosito/flutter-action@v2
+        with:
+          flutter-version: '3.22.x'
+          channel: stable
+          cache: true
+
+      - name: Install dependencies
+        run: flutter pub get
+
+      - name: Analyze
+        run: flutter analyze --no-fatal-infos
+
+      - name: Run tests
+        run: flutter test
+
+      - name: Publish to pub.dev
+        run: flutter pub publish --force
+        # Note: Uses OIDC token-based authentication (no credentials needed in secrets).
+        # Configure pub.dev automated publishing at:
+        # https://pub.dev/packages/adaptive_messaging_flutter/admin

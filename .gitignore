@@ -1,0 +1,37 @@
+# Dart / Flutter
+.dart_tool/
+.packages
+pubspec.lock
+build/
+doc/api/
+
+# Android
+android/.gradle/
+android/build/
+android/local.properties
+android/captures/
+android/.idea/
+android/.DS_Store
+*.iml
+
+# IntelliJ / Android Studio
+.idea/
+*.iml
+*.ipr
+*.iws
+
+# macOS
+.DS_Store
+
+# Test coverage
+coverage/
+
+# Example app build
+example/.dart_tool/
+example/build/
+example/android/.gradle/
+example/android/local.properties
+example/ios/
+
+# pub.dev credentials (never commit)
+.pub-cache/
