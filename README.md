@@ -1,8 +1,9 @@
-# adaptive_messaging_flutter
+# adaptive_messaging
 
-[![pub version](https://img.shields.io/pub/v/adaptive_messaging_flutter.svg)](https://pub.dev/packages/adaptive_messaging_flutter)
+[![pub version](https://img.shields.io/pub/v/adaptive_messaging.svg)](https://pub.dev/packages/adaptive_messaging)
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
-[![Platform](https://img.shields.io/badge/platform-android-green.svg)](https://pub.dev/packages/adaptive_messaging_flutter)
+[![Platform Android](https://img.shields.io/badge/platform-android-green.svg)](https://pub.dev/packages/adaptive_messaging)
+[![Platform iOS](https://img.shields.io/badge/platform-ios-lightgrey.svg)](https://pub.dev/packages/adaptive_messaging)
 
 Flutter plugin for the **Adaptive SDK Messaging** module. Handles push notifications for the Adaptive e-learning platform:
 
@@ -10,8 +11,8 @@ Flutter plugin for the **Adaptive SDK Messaging** module. Handles push notificat
 - 🔍 **Detect Adaptive notifications** from incoming FCM payloads
 - 🔔 **Display in-app system notifications** via an Android notification channel
 
-> **Requires** [`adaptive_core_flutter`](https://pub.dev/packages/adaptive_core_flutter) to be initialized first.  
-> **Android only.** Notifications use the `adaptive_channel` notification channel with `IMPORTANCE_DEFAULT`.
+> **Requires** [`adaptive_core`](https://pub.dev/packages/adaptive_core) to be initialized first.  
+> Supports **Android** and **iOS**. Notifications use the `adaptive_channel` notification channel on Android.
 
 ---
 
@@ -41,7 +42,8 @@ Flutter plugin for the **Adaptive SDK Messaging** module. Handles push notificat
 | Dart | 3.0.0 |
 | Android `minSdk` | 24 (Android 7.0) |
 | Android `compileSdk` | 35 |
-| `adaptive_core_flutter` | 1.0.0 |
+| iOS minimum | 15.0 |
+| `adaptive_core` | 1.0.0 |
 
 ---
 
@@ -49,8 +51,8 @@ Flutter plugin for the **Adaptive SDK Messaging** module. Handles push notificat
 
 ```yaml
 dependencies:
-  adaptive_core_flutter: ^1.0.0
-  adaptive_messaging_flutter: ^1.0.0
+  adaptive_core: ^1.0.0
+  adaptive_messaging: ^1.0.0
 ```
 
 ```bash
@@ -89,8 +91,8 @@ await Permission.notification.request();
 ### 1. Initialize Core SDK
 
 ```dart
-import 'package:adaptive_core_flutter/adaptive_core_flutter.dart';
-import 'package:adaptive_messaging_flutter/adaptive_messaging_flutter.dart';
+import 'package:adaptive_core/adaptive_core.dart';
+import 'package:adaptive_messaging/adaptive_messaging.dart';
 
 await AdaptiveCore.initialize(clientId: 'YOUR_API_KEY');
 await AdaptiveCore.login(
@@ -134,8 +136,8 @@ if (isAdaptive) {
 ```dart
 import 'dart:convert';
 import 'package:firebase_messaging/firebase_messaging.dart';
-import 'package:adaptive_core_flutter/adaptive_core_flutter.dart';
-import 'package:adaptive_messaging_flutter/adaptive_messaging_flutter.dart';
+import 'package:adaptive_core/adaptive_core.dart';
+import 'package:adaptive_messaging/adaptive_messaging.dart';
 
 Future<void> initAdaptive() async {
   // 1. Initialize and login

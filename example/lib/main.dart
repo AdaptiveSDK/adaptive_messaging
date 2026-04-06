@@ -1,7 +1,9 @@
 import 'dart:convert';
+
+import 'package:adaptive_core/adaptive_core.dart';
+import 'package:adaptive_messaging/adaptive_messaging.dart';
+import 'package:permission_handler/permission_handler.dart';
 import 'package:flutter/material.dart';
-import 'package:adaptive_core_flutter/adaptive_core_flutter.dart';
-import 'package:adaptive_messaging_flutter/adaptive_messaging_flutter.dart';
 
 void main() {
   runApp(const MyApp());
@@ -31,7 +33,6 @@ class _HomePageState extends State<HomePage> {
   bool _ready = false;
   String _status = 'Not ready — initialize and login first.';
 
-  // A sample Adaptive notification payload.
   final String _samplePayload = jsonEncode({
     'source': 'adaptive',
     'title': 'New Grade Posted',
@@ -43,9 +44,10 @@ class _HomePageState extends State<HomePage> {
       await AdaptiveCore.initialize(clientId: 'YOUR_CLIENT_ID', debug: true);
       await AdaptiveCore.login(
         const AdaptiveUser(
-            userId: '1001',
-            userName: 'Jane Doe',
-            userEmail: 'jane@example.com'),
+          userId: '1001',
+          userName: 'Jane Doe',
+          userEmail: 'jane@example.com',
+        ),
       );
       setState(() {
         _ready = true;
@@ -53,17 +55,20 @@ class _HomePageState extends State<HomePage> {
       });
     } on AdaptiveException catch (e) {
       setState(() => _status = '❌ ${e.message}');
+    } catch (e) {
+      setState(() => _status = '❌ $e');
     }
   }
 
   Future<void> _registerToken() async {
-    // In production use FirebaseMessaging.instance.getToken()
     const fakeToken = 'FAKE_FCM_TOKEN_FOR_DEMO';
     try {
       await AdaptiveMessaging.setFCMToken(fakeToken);
       setState(() => _status = '✅ FCM token registered');
     } on AdaptiveMessagingException catch (e) {
       setState(() => _status = '❌ ${e.message}');
+    } catch (e) {
+      setState(() => _status = '❌ $e');
     }
   }
 
@@ -71,19 +76,26 @@ class _HomePageState extends State<HomePage> {
     try {
       final isAdaptive =
           await AdaptiveMessaging.isAdaptiveNotification(_samplePayload);
-      setState(
-          () => _status = isAdaptive ? '✅ Is Adaptive notification' : '⚠️ Not Adaptive');
+      setState(() => _status =
+          isAdaptive ? '✅ Is Adaptive notification' : '⚠️ Not Adaptive');
     } on AdaptiveMessagingException catch (e) {
       setState(() => _status = '❌ ${e.message}');
+    } catch (e) {
+      setState(() => _status = '❌ $e');
     }
   }
 
   Future<void> _showNotification() async {
+    var status = await Permission.notification.request();
+
+
     try {
       await AdaptiveMessaging.showAdaptiveNotification(_samplePayload);
       setState(() => _status = '✅ Notification shown');
     } on AdaptiveMessagingException catch (e) {
       setState(() => _status = '❌ ${e.message}');
+    } catch (e) {
+      setState(() => _status = '❌ $e');
     }
   }
 
@@ -96,25 +108,54 @@ class _HomePageState extends State<HomePage> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
-            Text(_status,
+            Container(
+              padding: const EdgeInsets.all(12),
+              decoration: BoxDecoration(
+                color: Theme.of(context).colorScheme.surfaceContainerHighest,
+                borderRadius: BorderRadius.circular(8),
+              ),
+              child: Text(
+                _status,
                 style: Theme.of(context).textTheme.titleMedium,
-                textAlign: TextAlign.center),
-            const SizedBox(height: 32),
-            ElevatedButton(
-                onPressed: _ready ? null : _setup,
-                child: const Text('Initialize & Login')),
+                textAlign: TextAlign.center,
+              ),
+            ),
+            const SizedBox(height: 16),
+            Container(
+              padding: const EdgeInsets.all(10),
+              decoration: BoxDecoration(
+                color: Theme.of(context).colorScheme.secondaryContainer,
+                borderRadius: BorderRadius.circular(6),
+              ),
+              child: Text(
+                'Sample payload:\n$_samplePayload',
+                style: Theme.of(context).textTheme.bodySmall,
+              ),
+            ),
+            const SizedBox(height: 24),
+            ElevatedButton.icon(
+              onPressed: _ready ? null : _setup,
+              icon: const Icon(Icons.rocket_launch),
+              label: const Text('Initialize & Login'),
+            ),
             const SizedBox(height: 12),
-            ElevatedButton(
-                onPressed: _ready ? _registerToken : null,
-                child: const Text('Register FCM Token')),
+            ElevatedButton.icon(
+              onPressed: _ready ? _registerToken : null,
+              icon: const Icon(Icons.token),
+              label: const Text('Register FCM Token'),
+            ),
             const SizedBox(height: 12),
-            ElevatedButton(
-                onPressed: _ready ? _checkNotification : null,
-                child: const Text('Is Adaptive Notification?')),
+            ElevatedButton.icon(
+              onPressed: _ready ? _checkNotification : null,
+              icon: const Icon(Icons.search),
+              label: const Text('Is Adaptive Notification?'),
+            ),
             const SizedBox(height: 12),
-            ElevatedButton(
-                onPressed: _ready ? _showNotification : null,
-                child: const Text('Show Adaptive Notification')),
+            ElevatedButton.icon(
+              onPressed: _ready ? _showNotification : null,
+              icon: const Icon(Icons.notifications),
+              label: const Text('Show Adaptive Notification'),
+            ),
           ],
         ),
       ),

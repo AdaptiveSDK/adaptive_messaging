@@ -1,4 +1,3 @@
-import 'dart:io';
 import 'package:flutter/services.dart';
 import 'adaptive_messaging_exception.dart';
 
@@ -20,7 +19,7 @@ import 'adaptive_messaging_exception.dart';
 /// });
 /// ```
 class AdaptiveMessaging {
-  static const MethodChannel _channel = MethodChannel('adaptive_messaging');
+  static final MethodChannel _channel = MethodChannel('adaptive_messaging');
 
   AdaptiveMessaging._();
 
@@ -31,7 +30,6 @@ class AdaptiveMessaging {
   ///
   /// Throws [AdaptiveMessagingException] on failure.
   static Future<void> setFCMToken(String token) async {
-    _assertAndroid();
     try {
       await _channel.invokeMethod<void>('setFCMToken', {'token': token});
     } on PlatformException catch (e) {
@@ -46,10 +44,11 @@ class AdaptiveMessaging {
   ///
   /// Throws [AdaptiveMessagingException] on failure.
   static Future<bool> isAdaptiveNotification(String payload) async {
-    _assertAndroid();
     try {
       final result = await _channel.invokeMethod<bool>(
-          'isAdaptiveNotification', {'payload': payload});
+        'isAdaptiveNotification',
+        {'payload': payload},
+      );
       return result ?? false;
     } on PlatformException catch (e) {
       throw AdaptiveMessagingException(code: e.code, message: e.message ?? '');
@@ -64,20 +63,12 @@ class AdaptiveMessaging {
   ///
   /// Throws [AdaptiveMessagingException] on failure.
   static Future<void> showAdaptiveNotification(String payload) async {
-    _assertAndroid();
     try {
-      await _channel.invokeMethod<void>(
-          'showAdaptiveNotification', {'payload': payload});
+      await _channel.invokeMethod<void>('showAdaptiveNotification', {
+        'payload': payload,
+      });
     } on PlatformException catch (e) {
       throw AdaptiveMessagingException(code: e.code, message: e.message ?? '');
-    }
-  }
-
-  static void _assertAndroid() {
-    if (!Platform.isAndroid) {
-      throw UnsupportedError(
-        'adaptive_messaging_flutter only supports Android at this time.',
-      );
     }
   }
 }

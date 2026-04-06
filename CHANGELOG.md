@@ -1,3 +1,8 @@
+## 1.0.6
+
+* Added iOS platform support (iOS 15.0+).
+* Fixed README package name references to use correct pub.dev package names.
+
 ## 1.0.0
 
 * Initial release.

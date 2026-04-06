@@ -1,5 +1,5 @@
 name: adaptive_messaging_example
-description: Demonstrates usage of the adaptive_messaging_flutter plugin.
+description: Demonstrates usage of the adaptive_messaging plugin.
 publish_to: none
 version: 1.0.0+1
 
@@ -9,10 +9,11 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-  adaptive_core_flutter:
-    path: ../../adaptive_core_flutter
-  adaptive_messaging_flutter:
+  adaptive_core:
+    path: ../../adaptive_core
+  adaptive_messaging:
     path: ../
+  permission_handler: ^12.0.1
 
 dev_dependencies:
   flutter_test:

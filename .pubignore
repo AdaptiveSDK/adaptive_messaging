@@ -1,0 +1,3 @@
+# Stale legacy files from previous naming scheme — exclude from published package
+android/src/main/kotlin/com/adaptive/messaging_flutter/
+lib/adaptive_messaging_flutter.dart

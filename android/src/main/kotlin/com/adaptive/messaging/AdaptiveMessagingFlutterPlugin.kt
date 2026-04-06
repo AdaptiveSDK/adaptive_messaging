@@ -1,4 +1,4 @@
-package com.adaptive.messaging_flutter
+package com.adaptive.messaging
 
 import android.content.Context
 import android.os.Handler
