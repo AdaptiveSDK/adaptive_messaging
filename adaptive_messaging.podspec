@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name             = 'adaptive_messaging'
-  s.version          = '1.0.6'
+  s.version          = '1.0.7'
   s.summary          = 'Flutter iOS plugin for the Adaptive Messaging SDK.'
   s.description      = 'Registers FCM tokens, detects Adaptive push notifications, and displays in-app notifications for the Adaptive e-learning platform.'
   s.homepage         = 'https://github.com/AdaptiveSDK/AdaptiveiOSSDK'

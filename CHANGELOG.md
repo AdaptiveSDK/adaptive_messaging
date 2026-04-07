@@ -1,3 +1,7 @@
+## 1.0.7
+
+* Minor improvements to Android build configuration.
+
 ## 1.0.6
 
 * Added iOS platform support (iOS 15.0+).
