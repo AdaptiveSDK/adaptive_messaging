@@ -4,10 +4,10 @@ Pod::Spec.new do |s|
   s.summary          = 'Flutter iOS plugin for the Adaptive Messaging SDK.'
   s.description      = 'Registers FCM tokens, detects Adaptive push notifications, and displays in-app notifications for the Adaptive e-learning platform.'
   s.homepage         = 'https://github.com/AdaptiveSDK/AdaptiveiOSSDK'
-  s.license          = { :file => 'LICENSE' }
+  s.license          = { :file => '../LICENSE' }
   s.author           = { 'AlAdwaa' => 'dev_team@aladwaa.org' }
   s.source           = { :path => '.' }
-  s.source_files     = 'ios/Classes/**/*'
+  s.source_files     = 'Classes/**/*'
   s.dependency 'Flutter'
   s.dependency 'AdaptiveMessaging', '~> 1.0'
   s.platform         = :ios, '15.0'

@@ -19,7 +19,7 @@ import 'adaptive_messaging_exception.dart';
 /// });
 /// ```
 class AdaptiveMessaging {
-  static final MethodChannel _channel = MethodChannel('adaptive_messaging');
+  static const MethodChannel _channel = MethodChannel('adaptive_messaging');
 
   AdaptiveMessaging._();
 

@@ -42,6 +42,19 @@ class _HomePageState extends State<HomePage> {
   Future<void> _setup() async {
     try {
       await AdaptiveCore.initialize(clientId: 'YOUR_CLIENT_ID', debug: true);
+      setState(() {
+        _ready = true;
+        _status = '✅ Ready';
+      });
+    } on AdaptiveException catch (e) {
+      setState(() => _status = '❌ ${e.message}');
+    } catch (e) {
+      setState(() => _status = '❌ $e');
+    }
+  }
+
+  Future<void> _login() async {
+    try {
       await AdaptiveCore.login(
         const AdaptiveUser(
           userId: '1001',
@@ -136,7 +149,13 @@ class _HomePageState extends State<HomePage> {
             ElevatedButton.icon(
               onPressed: _ready ? _setup : null,
               icon: const Icon(Icons.rocket_launch),
-              label: const Text('Initialize & Login'),
+              label: const Text('Initialize'),
+            ),
+            const SizedBox(height: 12),
+            ElevatedButton.icon(
+              onPressed: _ready ? _login : null,
+              icon: const Icon(Icons.rocket_launch),
+              label: const Text('Login'),
             ),
             const SizedBox(height: 12),
             ElevatedButton.icon(

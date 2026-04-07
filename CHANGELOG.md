@@ -1,3 +1,11 @@
+## 1.0.8
+
+* Moved iOS podspec to `ios/` directory (standard Flutter plugin layout).
+* Fixed podspec `source_files` path and `license` reference.
+* Split `Initialize` and `Login` into separate buttons in the example app.
+* Fixed `MethodChannel` declaration to use `const` constructor.
+* Sorted `dev_dependencies` alphabetically in `pubspec.yaml`.
+
 ## 1.0.7
 
 * Minor improvements to Android build configuration.
