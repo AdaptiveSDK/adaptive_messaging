@@ -30,7 +30,7 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-  bool _ready = false;
+  bool _ready = true;
   String _status = 'Not ready — initialize and login first.';
 
   final String _samplePayload = jsonEncode({
@@ -86,7 +86,7 @@ class _HomePageState extends State<HomePage> {
   }
 
   Future<void> _showNotification() async {
-    var status = await Permission.notification.request();
+     await Permission.notification.request();
 
 
     try {
@@ -134,7 +134,7 @@ class _HomePageState extends State<HomePage> {
             ),
             const SizedBox(height: 24),
             ElevatedButton.icon(
-              onPressed: _ready ? null : _setup,
+              onPressed: _ready ? _setup : null,
               icon: const Icon(Icons.rocket_launch),
               label: const Text('Initialize & Login'),
             ),
