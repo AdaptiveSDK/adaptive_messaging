@@ -1,3 +1,16 @@
+## 1.0.12
+
+* **`AdaptiveMessaging.showAdaptiveNotification`** – notification title and
+  description are now extracted from a nested `notification` object inside the
+  FCM data payload (`data → notification → title / description`) when present,
+  falling back to the flat `data.title` / `data.description` fields. Both
+  payload shapes are supported with no changes required by the consumer.
+* **Android** – `InternalHttpClient` now logs a structured `→ REQUEST` /
+  `← RESPONSE` block for every HTTP call. Gated by debug mode.
+* **Android** – removed `mavenLocal()` from plugin build configuration.
+* Bumped Android native dependency pin to `adaptive-messaging:1.0.11`.
+* Bumped iOS `AdaptiveMessaging` CocoaPod dependency pin to `~> 1.0.12`.
+
 ## 1.0.8
 
 * Moved iOS podspec to `ios/` directory (standard Flutter plugin layout).

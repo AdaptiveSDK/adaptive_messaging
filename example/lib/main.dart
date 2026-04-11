@@ -99,8 +99,7 @@ class _HomePageState extends State<HomePage> {
   }
 
   Future<void> _showNotification() async {
-     await Permission.notification.request();
-
+    await Permission.notification.request();
 
     try {
       await AdaptiveMessaging.showAdaptiveNotification(_samplePayload);

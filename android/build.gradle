@@ -1,5 +1,5 @@
 group = 'com.adaptive.messaging'
-version = '1.0.7'
+version = '1.0.12'
 
 buildscript {
     ext.kotlin_version = '2.1.0'
@@ -15,7 +15,6 @@ buildscript {
 
 rootProject.allprojects {
     repositories {
-        mavenLocal()
         google()
         mavenCentral()
     }
@@ -50,7 +49,7 @@ android {
 }
 
 dependencies {
-    implementation "io.github.adaptivesdk:adaptive-messaging:1.0.8"
+    implementation "io.github.adaptivesdk:adaptive-messaging:1.0.11"
     // adaptive-messaging transitively pulls in adaptive-core
     implementation "org.jetbrains.kotlin:kotlin-stdlib:2.1.0"
 }
