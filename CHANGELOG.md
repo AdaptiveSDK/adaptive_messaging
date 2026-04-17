@@ -1,3 +1,8 @@
+## 1.0.19
+
+* Bumped iOS `AdaptiveMessaging` CocoaPod dependency pin to `~> 1.0.19`.
+* Bumped Android native dependency pin to `adaptive-messaging:1.0.19`.
+
 ## 1.0.12
 
 * **`AdaptiveMessaging.showAdaptiveNotification`** – notification title and
