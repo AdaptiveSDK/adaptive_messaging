@@ -1,3 +1,8 @@
+## 1.0.21
+
+* Bumped iOS `AdaptiveMessaging` CocoaPod dependency pin to `~> 1.0.21`.
+* Bumped Android native dependency pin to `adaptive-messaging:1.0.21`.
+
 ## 1.0.20
 
 * Bumped iOS `AdaptiveMessaging` CocoaPod dependency pin to `~> 1.0.20`.

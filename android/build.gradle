@@ -1,5 +1,5 @@
 group = 'com.adaptive.messaging'
-version = '1.0.20'
+version = '1.0.21'
 
 buildscript {
     ext.kotlin_version = '2.1.0'
