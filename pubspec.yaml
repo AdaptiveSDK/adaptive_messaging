@@ -3,7 +3,7 @@ description: >-
   Flutter plugin for the Adaptive SDK Messaging module. Registers FCM tokens,
   detects Adaptive push-notification payloads, and displays in-app notifications
   for the Adaptive e-learning platform.
-version: 1.0.23
+version: 1.0.24
 homepage: https://github.com/AdaptiveSDK/adaptive_messaging
 repository: https://github.com/AdaptiveSDK/adaptive_messaging
 issue_tracker: https://github.com/AdaptiveSDK/adaptive_messaging/issues

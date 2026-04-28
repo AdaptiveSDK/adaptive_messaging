@@ -1,3 +1,6 @@
+## 1.0.24
+* Maintenance release and dependency updates.
+
 ## 1.0.23
 
 * Bumped iOS `AdaptiveMessaging` CocoaPod dependency pin to `~> 1.0.23`.
