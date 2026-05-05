@@ -49,7 +49,7 @@ android {
 }
 
 dependencies {
-    implementation "io.github.adaptivesdk:adaptive-messaging:1.0.24"
+    implementation "io.github.adaptivesdk:adaptive-messaging:1.0.27"
     // adaptive-messaging transitively pulls in adaptive-core
     implementation "org.jetbrains.kotlin:kotlin-stdlib:2.1.0"
 }
